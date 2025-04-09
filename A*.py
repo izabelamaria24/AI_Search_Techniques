@@ -40,12 +40,8 @@ class KR:
                         
             step_count += 1
             if step_count == n:
-                # Display the heuristic values of nodes in the open_set
-                open_set_with_heuristic = [
-                    (item[1].index, self.heuristic(item[1], [self.graph.nodes[goal] for goal in scopeNodes]))
-                    for item in open_set
-                ]
-                return open_set_with_heuristic
+                open_set_with_f = [(item[1].index, f[item[1]]) for item in open_set]
+                return open_set_with_f
         
         return None
 
@@ -146,6 +142,7 @@ class Graph:
             
     def get_neighbors(self, node):
         return self.adj_list.get(node.index, [])
+
 
 
 if __name__ == "__main__":
